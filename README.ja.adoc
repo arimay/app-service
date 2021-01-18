@@ -1,0 +1,137 @@
+= App::Service
+
+サービスアプリケーションをデーモン化するライブラリ。
+
+== 特徴
+
+* 端末アプリからバックグラウンドサービスへ容易に切り替える。
+
+== 導入
+
+アプリの Gemfile にこの行を追加
+
+[source,ruby]
+----
+gem 'app-service'
+----
+
+それから実行
+
+    $ bundle install
+
+または次のように手動で導入
+
+    $ gem install app-service
+    or
+    $ gem install -l app-service-x.x.x.gem
+
+== 使い方
+
+=== 例
+
+[source,ruby]
+----
+require  "app/service"
+
+# デフォルト設定でサービスアプリを実行する.
+App::Service.setup( ARGV.shift )
+
+# カスタム設定でサービスアプリを実行する.
+App::Service.setup( ARGV.shift, **options )
+----
+
+[source,bash]
+----
+# 端末アプリを実行する.
+ruby sample.rb  run
+
+# バックグラウンドサービスを開始する.
+ruby sample.rb  start
+
+# バックグラウンドサービスを停止する.
+ruby sample.rb  stop
+
+# バックグラウンドサービスを再起動する.
+ruby sample.rb  restart
+
+# バックグラウンドサービスの状態を表示する.
+ruby sample.rb  status
+----
+
+== リファレンス
+
+=== App::Service を準備する.
+
+[source,ruby]
+----
+App::Service.setup( mode = nil, **options )
+----
+
+* Result:
+  ** なし.
+
+* Parameter:
+  ** mode:                      動作モード [run start stop restart status]
+  ** argv:                      コマンドライン引数. (default: ARGV)
+  ** app_dir:                   アプリ作業ディレクトリ. (default: "..")
+  ** tmp_dir:                   一時使用ディレクトリ. (default: "tmp")
+  ** log_dir:                   ログ保管ディクトリ. (default: "log")
+  ** log_sync:                  ログ同期モード. (default: false)
+  ** shift_age:                 ログファイルを保持する数か、ログファイルを切り替える頻度. 
+                                [0.., "daily", "weekly", "monthly"] (default: 0)
+  ** shift_size:                ログファイルを切り替えるサイズ. (default: 1048576)
+  ** log_level:                 ログレベル. (default: Logger::Severity::DEBUG)
+                                [0:DEBUG, 1:INFO, 2:WARN, 3:ERROR, 4:FATAL, 5:UNKNOWN]
+  ** progname:                  (default: nil)
+  ** formatter:                 (default: Formatter.new)
+  ** datetime_format:           (default: '%Y-%m-%d %H:%M:%S')
+  ** shift_period_suffix:       (default: '%Y%m%d')
+
+=== App::Service を終了する.
+
+[source,ruby]
+----
+App::Service.shutdown( cond = 0 )
+----
+
+* Result:
+  ** none.
+
+* Parameter:
+  ** cond:                      プロセス終了コード. (default: 0)
+
+=== 動作モードを取得する.
+
+[source,ruby]
+----
+App::Service.mode
+----
+
+* Result:
+  ** String:                    動作モード [run start stop restart status]
+
+* Parameter:
+  ** なし.
+
+=== ロガーを取得する.
+
+[source,ruby]
+----
+App::Service.logger
+----
+
+* Result:
+  ** Loggerインスタンス.
+
+* Parameter:
+  ** なし.
+
+== 貢献
+
+不具合報告とプルリクエストは GitHub https://github.com/arimay/app-service まで. 
+
+== ライセンス
+
+この Gem は、 http://opensource.org/licenses/MIT[MITライセンス] の条件に基づいてオープンソースとして入手できる.
+
+Copyright (c) ARIMA Yasuhiro <arima.yasuhiro@gmail.com>
