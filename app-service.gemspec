@@ -5,7 +5,7 @@ require_relative "lib/app/service/version"
 Gem::Specification.new do |spec|
   spec.name          = "app-service"
   spec.version       = App::Service::VERSION
-  spec.authors       = ["ARIMA Yasuhiro"]
+  spec.authors       = ["arimay"]
   spec.email         = ["arima.yasuhiro@gmail.com"]
 
   spec.summary       = %q{ Service application daemonize. }
