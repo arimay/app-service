@@ -92,14 +92,14 @@ module App
         if ( !app_dir.nil? && app_dir[0] == "/" )
           @@app_dir  =  app_dir
         else
-          @@app_dir  =  File.expand_path( File.join( PROGRAM_DIR, ( app_dir || ".." ) ) )
+          @@app_dir  =  File.expand_path( File.join( PROGRAM_DIR, ( app_dir || "." ) ) )
         end
         Dir.chdir( @@app_dir )
 
         if ( !tmp_dir.nil? && tmp_dir[0] == "/" )
           @@tmp_dir  =  tmp_dir
         else
-          @@tmp_dir  =  File.expand_path( File.join( @@app_dir, ( tmp_dir || "tmp" ) ) )
+          @@tmp_dir  =  File.expand_path( File.join( @@app_dir, ( tmp_dir || "." ) ) )
         end
         unless  Dir.exist?( @@tmp_dir )
           FileUtils.makedirs( @@tmp_dir )
@@ -110,7 +110,7 @@ module App
         if ( !log_dir.nil? && log_dir[0] == "/" )
           @@log_dir  =  log_dir
         else
-          @@log_dir  =  File.expand_path( File.join( @@app_dir, ( log_dir || "log" ) ) )
+          @@log_dir  =  File.expand_path( File.join( @@app_dir, ( log_dir || "." ) ) )
         end
 
         unless  Dir.exist?( @@log_dir )
