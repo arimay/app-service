@@ -95,7 +95,7 @@ App::Service.shutdown( cond = 0 )
 ----
 
 * Result:
-  ** なし.
+  ** none.
 
 * Parameter:
   ** cond:                      process exit condition. (default: 0)

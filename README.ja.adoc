@@ -95,7 +95,7 @@ App::Service.shutdown( cond = 0 )
 ----
 
 * Result:
-  ** none.
+  ** なし.
 
 * Parameter:
   ** cond:                      プロセス終了コード. (default: 0)
