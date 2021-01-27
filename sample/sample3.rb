@@ -2,7 +2,7 @@ require "app/service"
 
 App::Service.setup( ARGV.shift )
 
-::Signal.trap( :INT ) do
+Signal.trap( :INT ) do
   p :INT
   App::Service.shutdown
 end

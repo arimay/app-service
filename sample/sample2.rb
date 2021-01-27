@@ -2,8 +2,8 @@ require "app/service"
 
 options = {
 # app_dir:              "..",
-# tmp_dir:              "tmp",
-# log_dir:              "log",
+# tmp_dir:              ".",
+# log_dir:              ".",
 # log_sync:             true,   # Boolean
 
 # shift_age:            0,      # 0, Positive, "daily", "weekly", "monthly"
